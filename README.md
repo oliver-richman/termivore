@@ -1,5 +1,5 @@
-<h1 style="margin: 0; display: inline-block; border: none;">🥩 Termivore</h1>
-<p style="margin: 0;">Feed your hunger for beautiful CLI interfaces with Termivore</p>
+# 🥩 Termivore</h1>
+Feed your hunger for beautiful CLI interfaces with Termivore
 
 ---
 
