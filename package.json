@@ -1,0 +1,23 @@
+{
+  "name": "termivore",
+  "version": "1.0.0",
+  "description": "All-in-one package for creating perfect CLIs",
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "tools",
+    "spinner",
+    "input",
+    "loading",
+    "formatting",
+    "color",
+    "colour",
+    "clean",
+    "pretty"
+  ],
+  "author": "Oliver Richman",
+  "license": "Apache-2.0"
+}
