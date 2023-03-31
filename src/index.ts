@@ -1,0 +1,1 @@
+export { Spinner, ISpinnerOptions } from './spinner';

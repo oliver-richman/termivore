@@ -1,10 +1,11 @@
 {
   "name": "termivore",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "All-in-one package for creating perfect CLIs",
-  "main": "bin/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "tsc --watch",
+    "build": "tsc"
   },
   "keywords": [
     "cli",
@@ -19,5 +20,13 @@
     "pretty"
   ],
   "author": "Oliver Richman",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oliver-richman/termivore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oliver-richman/termivore/issues"
+  },
+  "homepage": "https://github.com/oliver-richman/termivore#readme"
 }
