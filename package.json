@@ -1,12 +1,16 @@
 {
   "name": "termivore",
-  "version": "0.0.0",
+  "version": "1.0.3",
   "description": "All-in-one package for creating perfect CLIs",
   "main": "dist/index.js",
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc"
   },
+  "files": [
+    "dist/**",
+    "README.md"
+  ],
   "keywords": [
     "cli",
     "tools",

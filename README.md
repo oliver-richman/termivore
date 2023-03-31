@@ -1,11 +1,5 @@
-<summary>
-	<h1 style="margin: 0; display: inline-block; border: none;">
-		🥩 Termivore
-	</h1>
-	<p style="margin: 0;">
-		Feed your hunger for beautiful CLI interfaces with Termivore
-	</p>
-</summary>
+<h1 style="margin: 0; display: inline-block; border: none;">🥩 Termivore</h1>
+<p style="margin: 0;">Feed your hunger for beautiful CLI interfaces with Termivore</p>
 
 ---
 
@@ -14,7 +8,7 @@ Termivore is a Node.js package for creating beautiful and responsive command-lin
 
 ## **Features**
 
-- 🎡 **Spinner** (SOON): display an animated spinner to indicate loading
+- 🎡 **Spinner**: display an animated spinner to indicate loading
 - 📊 **Progress Bar** (SOON): display a progress bar with percentage and ETA
 - 📜 **Table** (SOON): print data in a tabular format with support for pagination, sorting, and filtering
 - 📝 **Logger** (SOON): log messages to the console with customizable colors and styles
