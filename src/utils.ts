@@ -4,3 +4,36 @@ export const writeToTerminal = (textToWrite: string, clearPreviousText = false, 
 	const newLine = addNewLine ? '\n' : '';
 	process.stdout.write(`${clearLine}${clearToStart}${textToWrite}${clearPreviousText ? '' : '\r'}${newLine}`);
 }
+
+export const ansiCodes = {
+  reset: 0,
+  bold: 1,
+  dim: 2,
+  italic: 3,
+  underline: 4,
+  black: 30,
+  blackBg: 40,
+  red: 31,
+  redBg: 41,
+  green: 32,
+  greenBg: 42,
+  yellow: 33,
+  yellowBg: 43,
+  blue: 34,
+  blueBg: 44,
+  magenta: 35,
+  magentaBg: 45,
+  cyan: 36,
+  cyanBg: 46,
+  white:37,
+  whiteBg: 47,
+};
+
+export const removeDuplicateResetCodes = (message: string): string => {
+  const regex = /(\\x1b\[0m){2,}/g;
+  return message.replace(regex, '\x1b[0m');
+}
+
+export const getAnsiCode = (style: string): string => {
+  return `\x1b[${ansiCodes[style]}m`;
+}
