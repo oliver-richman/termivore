@@ -3,6 +3,13 @@ Feed your hunger for beautiful CLI interfaces with Termivore
 
 ---
 
+![npm](https://img.shields.io/npm/v/termivore)
+![npm](https://img.shields.io/npm/dw/termivore)
+![npm bundle size](https://img.shields.io/bundlephobia/min/termivore)
+![GitHub top language](https://img.shields.io/github/languages/top/oliver-richman/termivore)
+![NPM](https://img.shields.io/npm/l/termivore)
+
+
 ## **What is Termivore?**
 Termivore is a Node.js package for creating beautiful and responsive command-line interfaces. With spinner animations, progress bars, table printing, and more, Termivore provides developers with powerful and flexible tools to create custom terminal interfaces. It also includes utilities for handling user input, validating arguments, and parsing options. Whether you're building a CLI tool, a server-side application, or a DevOps automation script, Termivore can help you streamline your development process and create high-quality terminal interfaces with ease.
 
