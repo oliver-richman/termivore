@@ -12,7 +12,7 @@ Feed your hunger for beautiful CLI interfaces with Termivore
 <br />
 
 ## **What is Termivore?**
-Termivore is a Node.js package for creating beautiful and responsive command-line interfaces. With spinner animations, progress bars, table printing, and more, Termivore provides developers with powerful and flexible tools to create custom terminal interfaces. It also includes utilities for handling user input, validating arguments, and parsing options. Whether you're building a CLI tool, a server-side application, or a DevOps automation script, Termivore can help you streamline your development process and create high-quality terminal interfaces with ease.
+Termivore is a Node.js package for creating beautiful and responsive command line interfaces. With spinner animations, progress bars, table printing, and more, Termivore provides developers with powerful and flexible tools to create custom terminal interfaces. It also includes utilities for handling user input, validating arguments, and parsing options. Whether you're building a CLI tool, a server-side application, or a DevOps automation script, Termivore can help you streamline your development process and create high-quality terminal interfaces with ease.
 
 <br />
 
@@ -39,9 +39,9 @@ Termivore is a Node.js package for creating beautiful and responsive command-lin
 - 🕹️ **Prompt** (SOON): prompt the user for input with customizable options and validation
 - 🎚️ **Slider** (SOON): allow the user to input a value using a slider with customizable range and step
 - 🌈 **Colors and Styles** (SOON): add colors and styles to text output with support for ANSI escape codes, RGB and Hex
-- 🧐 **Argument Parsing** (SOON): parse command-line arguments with support for options, flags, and values
-- 🤖 **Auto-suggestion** (SOON): provide auto-suggestion for command-line input using fuzzy search
-- 🤝 **Interactive** (SOON): provide interactive command-line interfaces with support for mouse events and key bindings
+- 🧐 **Argument Parsing** (SOON): parse command line arguments with support for options, flags, and values
+- 🤖 **Auto-suggestion** (SOON): provide auto-suggestion for command line input using fuzzy search
+- 🤝 **Interactive** (SOON): provide interactive command line interfaces with support for mouse events and key bindings
 
 <br />
 
@@ -61,6 +61,7 @@ You will now be able to import the methods/classes needed, see [usage](#usage) f
 The CLI class allows you to quickly setup a command line interface, adding commands with arguments, options and a built in help command
 
 ```typescript
+#!/usr/bin/env node
 import { CLI } from 'termivore';
 
 const myCli = new CLI('myCli')
@@ -74,7 +75,15 @@ myCli.addCommand('my-command')
 
 myCli.start();
 ```
+This means your users would be able to run:
 
+```bash
+myCli my-command my-argument --my-option
+```
+
+This also implements a help command (which can be disabled if necessary), so running `myCli help` would output:
+
+![Output of myCli help command](https://github.com/oliver-richman/termivore/blob/master/assets/cli-example-1.png?raw=true)
 
 ### 🎡 **Spinner**
 The Spinner class provides an easy way to show a spinner on the command line to indicate loading. It can be used like so:
