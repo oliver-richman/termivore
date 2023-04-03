@@ -1,6 +1,6 @@
 {
   "name": "termivore",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "All-in-one package for creating perfect CLIs",
   "main": "dist/index.js",
   "bin": {
