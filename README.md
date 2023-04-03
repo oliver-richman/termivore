@@ -85,6 +85,16 @@ This also implements a help command (which can be disabled if necessary), so run
 
 ![Output of myCli help command](https://github.com/oliver-richman/termivore/blob/master/assets/cli-example-1.png?raw=true)
 
+> **Important:**
+>
+> If you're using the CLI class without the termivore CLI, You will need to have `#!/usr/bin/env node` at the top of your file. and update the bin field in your package.json (example below)
+```json
+"bin": {
+	"myCli": "path/to/file"
+}
+```
+
+
 ### 🎡 **Spinner**
 The Spinner class provides an easy way to show a spinner on the command line to indicate loading. It can be used like so:
 
