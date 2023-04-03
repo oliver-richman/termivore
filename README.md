@@ -32,7 +32,7 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
 
 ## **Features**
 
-- 🚀 [**CLI Command Creation**](#🚀-cli-command-creation): users can easily create and customize their own CLI commands with arguments/options and actions.
+- 🚀 **[CLI Command Creation](#🚀-cli-command-creation)**: users can easily create and customize their own CLI commands with arguments/options and actions.
 - 🎡 [**Spinner**](#🎡-spinner): display an animated spinner to indicate loading
 - 📊 **Progress Bar** (SOON): display a progress bar with percentage and ETA
 - 📜 **Table** (SOON): print data in a tabular format with support for pagination, sorting, and filtering
