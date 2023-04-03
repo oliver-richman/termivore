@@ -3,7 +3,7 @@ import { log } from './log';
 
 import { ICommandArgument, ICommandOption} from './types';
 import { ICLIOptions } from './types';
-import { joinWithConjunction } from './utils';
+import { joinWithConjunction, toCamelCase } from './utils';
 
 export class CLI {
 	private helpCommand: boolean = true;
@@ -65,7 +65,7 @@ export class CLI {
 		let argIndex = 1;
 		const args = {};
 		for (const argument of commandArguments){
-			args[argument.name] = consoleArgs[argIndex];
+			args[toCamelCase(argument.name)] = consoleArgs[argIndex];
 			argIndex++;
 		}
 
@@ -79,12 +79,13 @@ export class CLI {
 		const opts = {};
 
 		for (const commandOption of commandOptions) {
+			const optionKey = toCamelCase(commandOption.doubleDashName);
 			if (allOpts.includes(`--${commandOption.doubleDashName}`)) {
-				opts[commandOption.doubleDashName] = true;
+				opts[optionKey] = true;
 			} else if (commandOption.alternativeNames.find(altName => allOpts.includes(altName))){
-				opts[commandOption.doubleDashName] = true;
+				opts[optionKey] = true;
 			} else {
-				opts[commandOption.doubleDashName] = false;
+				opts[optionKey] = false;
 			}
 		}
 
@@ -127,33 +128,37 @@ export class CLI {
 					log(`  ${command.details}`).italic().print();
 					log('').print();
 
-					log(' ').append(log('Arguments:').underline()).print();
-					for (const argument of command.arguments) {
-						log(`    `)
-							.append(
-								log(`${argument.name}`).hex('#8590c7').append(':')
-							)
-							.append(
-								`${argument.description || 'No description available for this argument.'}`
-							,)
-							.print();
+					if (command.arguments.length){
+						log(' ').append(log('Arguments:').underline()).print();
+						for (const argument of command.arguments) {
+							log(`    `)
+								.append(
+									log(`${argument.name}`).hex('#8590c7').append(':')
+								)
+								.append(
+									`${argument.description || 'No description available for this argument.'}`
+								)
+								.print();
+						}
 					}
 
-					log('').print();
+					if (command.options.length){
+						log('').print();
 
-					log(' ').append(log('Options:').underline()).print();
-					for (const option of command.options) {
-						log(`    `)
-							.append(
-								log(`--${option.doubleDashName}`).hex('#8590c7').append(':')
-							)
-							.append(
-								`${option.description || 'No description available for this argument.'}`
-							)
-							.append(
-								`(alternatively, use: ${joinWithConjunction(option.alternativeNames, 'or')})`
-							)
-							.print();
+						log(' ').append(log('Options:').underline()).print();
+						for (const option of command.options) {
+							log(`    `)
+								.append(
+									log(`--${option.doubleDashName}`).hex('#8590c7').append(':')
+								)
+								.append(
+									`${option.description || 'No description available for this argument.'}`
+								)
+								.append(
+									`(alternatively, use: ${joinWithConjunction(option.alternativeNames, 'or')})`
+								)
+								.print();
+						}
 					}
 					log('').print();
 				}

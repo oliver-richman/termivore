@@ -17,6 +17,16 @@ export const joinWithConjunction = (array: (string | number | boolean)[], conjun
   return joinedString;
 }
 
+export const toCamelCase = (inputString: string): string => {
+  return inputString.replace(/[-_]+(.)?/g, (match, firstLetter) => {
+    if (firstLetter) {
+      return firstLetter.toUpperCase();
+    } else {
+      return '';
+    }
+  });
+};
+
 
 export const ansiCodes = {
   reset: 0,
