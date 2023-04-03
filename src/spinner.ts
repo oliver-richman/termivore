@@ -1,11 +1,5 @@
+import { ISpinnerOptions } from './types';
 import { writeToTerminal } from './utils';
-
-export interface ISpinnerOptions {
-	frames?: string[];
-	persistOnStop?: boolean;
-	stopIcon?: string;
-	stopText?: string;
-}
 
 const defaultSpinnerOptions: ISpinnerOptions = {
 	frames: [ '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' ],
@@ -28,7 +22,7 @@ export class Spinner {
 	this.isStopped = false;
   }
 
-  public start(): this {
+  public start(): Spinner {
     this.timerId = setInterval(() => {
       this.currentFrame = ++this.currentFrame % this.options.frames.length;
       this.render();

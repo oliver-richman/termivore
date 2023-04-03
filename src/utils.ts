@@ -5,6 +5,19 @@ export const writeToTerminal = (textToWrite: string, clearPreviousText = false, 
 	process.stdout.write(`${clearLine}${clearToStart}${textToWrite}${clearPreviousText ? '' : '\r'}${newLine}`);
 }
 
+export const joinWithConjunction = (array: (string | number | boolean)[], conjunction: string): string => {
+  if (!array.length) return "";
+  
+  const stringArray = array.map(item => item.toString());
+  const lastItem = stringArray.pop()!;
+  
+  if (!stringArray.length) return lastItem;
+  
+  const joinedString = stringArray.join(", ") + ` ${conjunction} ` + lastItem;
+  return joinedString;
+}
+
+
 export const ansiCodes = {
   reset: 0,
   bold: 1,

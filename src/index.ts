@@ -1,5 +1,8 @@
-export { Spinner, ISpinnerOptions } from './spinner';
+export { Spinner } from './spinner';
 export { log } from './log';
+export { CLI } from './cli';
+
+export { ISpinnerOptions } from './types';
 
 // log('Hello there');
 // // Hello there

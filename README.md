@@ -9,33 +9,41 @@ Feed your hunger for beautiful CLI interfaces with Termivore
 ![GitHub top language](https://img.shields.io/github/languages/top/oliver-richman/termivore)
 ![NPM](https://img.shields.io/npm/l/termivore)
 
+<br />
 
 ## **What is Termivore?**
 Termivore is a Node.js package for creating beautiful and responsive command-line interfaces. With spinner animations, progress bars, table printing, and more, Termivore provides developers with powerful and flexible tools to create custom terminal interfaces. It also includes utilities for handling user input, validating arguments, and parsing options. Whether you're building a CLI tool, a server-side application, or a DevOps automation script, Termivore can help you streamline your development process and create high-quality terminal interfaces with ease.
 
-## Table of Contents
+<br />
 
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Spinner](#🎡-spinner)
-  - [Logger](#📝-logger)
-- [Contributors](#contributors)
-- [FAQ](#faq)
-- [License](#license)
+## **Table of Contents**
+
+- ### [Features](#features)
+- ### [Installation](#installation)
+- ### [Usage](#usage)
+  - ### [Spinner](#🎡-spinner)
+  - ### [Logger](#📝-logger)
+- ### [Contributors](#contributors)
+- ### [FAQ](#faq)
+- ### [License](#license)
+
+<br />
 
 ## **Features**
 
+- 🚀 [**CLI Command Creation**](🚀-cli-command-creation): users can easily create and customize their own CLI commands with arguments/options and actions.
 - 🎡 [**Spinner**](#🎡-spinner): display an animated spinner to indicate loading
 - 📊 **Progress Bar** (SOON): display a progress bar with percentage and ETA
 - 📜 **Table** (SOON): print data in a tabular format with support for pagination, sorting, and filtering
 - 📝 [**Logger**](#📝-logger): log messages to the console with customizable colors and styles
 - 🕹️ **Prompt** (SOON): prompt the user for input with customizable options and validation
 - 🎚️ **Slider** (SOON): allow the user to input a value using a slider with customizable range and step
-- 🌈 **Colors and Styles** (SOON): add colors and styles to text output with support for ANSI escape codes and Chalk
+- 🌈 **Colors and Styles** (SOON): add colors and styles to text output with support for ANSI escape codes, RGB and Hex
 - 🧐 **Argument Parsing** (SOON): parse command-line arguments with support for options, flags, and values
 - 🤖 **Auto-suggestion** (SOON): provide auto-suggestion for command-line input using fuzzy search
 - 🤝 **Interactive** (SOON): provide interactive command-line interfaces with support for mouse events and key bindings
+
+<br />
 
 ## **Installation**
 To install termivore, simply perform:
@@ -45,7 +53,28 @@ npm i termivore
 
 You will now be able to import the methods/classes needed, see [usage](#usage) form more details.
 
+<br />
+
 ## **Usage**
+
+### 🚀 **CLI Command Creation**
+The CLI class allows you to quickly setup a command line interface, adding commands with arguments, options and a built in help command
+
+```typescript
+import { CLI } from 'termivore';
+
+const myCli = new CLI('myCli')
+myCli.addCommand('my-command')
+	.description('Description of what this command does')
+	.argument('my-argument', 'Purpose of argument')
+	.option('my-option', ['-m'], 'Purpose of option')
+	.action((actionData) => {
+		// Logic for command goes here
+	});
+
+myCli.start();
+```
+
 
 ### 🎡 **Spinner**
 The Spinner class provides an easy way to show a spinner on the command line to indicate loading. It can be used like so:
@@ -184,7 +213,7 @@ log('Hello').red().append(log('World').green()).print();
 log('Hello').yellow().append('World').red().print();
 ```
 
-![Example of Logger class with different formatting options](https://github.com/oliver-richman/termivore/blob/master/assets/log-example-1?raw=true)
+![Example of Logger class with different formatting options](https://github.com/oliver-richman/termivore/blob/master/assets/log-example-1.png?raw=true)
 
 The Logger class can also handle custom RGB values and hexadecimal colors:
 
@@ -196,7 +225,7 @@ log('rgb text').rgb([72, 14, 253]).rgbBg(146, 237, 149).print();
 log('hex color text').hex('#11f8bf').hexBg('#710057').print();
 ```
 
-![Example of Logger class with custom RGB and hex colors](https://github.com/oliver-richman/termivore/blob/master/assets/log-example-2?raw=true)
+![Example of Logger class with custom RGB and hex colors](https://github.com/oliver-richman/termivore/blob/master/assets/log-example-2.png?raw=true)
 
 The Logger class also supports appending messages and nested Logger instances for more complex output:
 
@@ -210,19 +239,30 @@ log('Hello').yellow().append('World').red().print();
 log('The quick brown fox').cyan().append('jumped over the').red().append(log('lazy dog').bold().green()).print();
 ```
 
-![Example of Logger class with message appending and nested Logger instances](https://github.com/oliver-richman/termivore/blob/master/assets/log-example-2?raw=true)
+![Example of Logger class with message appending and nested Logger instances](https://github.com/oliver-richman/termivore/blob/master/assets/log-example-3.png?raw=true)
 
-## **Contributors**
-
-### Oliver Richman
-#### *London, UK*
-[GitHub](https://github.com/oliver-richman) • [LinkedIn](https://www.linkedin.com/in/oliverrichman52) • [NPM](https://www.npmjs.com/~oliver-richman)
+<br />
 
 ## **FAQ**
 
 Nothing here yet, if you have a question you want answering, please raise an issue on the GitHub repository, using the Question template.
 
 [Raise an issue on GitHub](https://github.com/oliver-richman/termivore/issues)
+
+<br />
+
+## **Contributors**
+
+<div>
+    <img src="https://avatars.githubusercontent.com/u/36195868?v=4" width="75px" alt="Oliver Richman" style="float:left; margin-right:20px; border-radius:50%;">
+    <div>
+        <h4 style="margin: 0;">Oliver Richman</h4>
+        <p style="margin: 0;"><em>London, UK</em></p>
+        <p style="margin-top:0"><a href="https://github.com/oliver-richman">GitHub</a> • <a href="https://www.linkedin.com/in/oliverrichman52">LinkedIn</a> • <a href="https://www.npmjs.com/~oliver-richman">NPM</a></p>
+    </div>
+</div>
+
+<br />
 
 ## **License**
 Termivore is distributed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0), which allows for the use, modification, and distribution of the software under certain conditions.
