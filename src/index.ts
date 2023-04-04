@@ -1,6 +1,7 @@
 export { Spinner } from './spinner';
-export { log } from './log';
 export { CLI } from './cli';
+export { log } from './log';
+export { prompt } from './prompt';
 
 export { ISpinnerOptions } from './types';
 
