@@ -61,7 +61,7 @@ const makeChoice = (prompt: string, choices: string[]): Promise<string> => {
 			.append(log('enter').cyan())
 			.append('to select your answer').print();
 		
-		const onKeyPress = (str, key) => {
+		process.stdin.on('keypress', (str, key) => {
 			if (key.ctrl && key.name === 'c') {
 				process.exit();
 			} else {
@@ -79,14 +79,11 @@ const makeChoice = (prompt: string, choices: string[]): Promise<string> => {
 
 					}
 				} else if (key.name === 'return') {
-					process.stdout.write('\u001b[?25h');
-					process.stdin.removeListener('keypress', onKeyPress);
 					resolve(keyMap.get(currentLine));
+					process.stdout.write('\u001b[?25h');
 				}
 			}
-		};
-
-		process.stdin.on('keypress', onKeyPress);
+		});
 	});
 };
 
