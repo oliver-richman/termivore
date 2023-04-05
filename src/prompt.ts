@@ -35,57 +35,66 @@ function listen(): Promise<void> {
 
 
 const makeChoice = (prompt: string, choices: string[]): Promise<string> => {
-	process.stdout.write('\u001b[?25l');
-	readline.emitKeypressEvents(process.stdin);
-	process.stdin.setRawMode(true);
+  process.stdout.write('\u001b[?25l');
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  readline.emitKeypressEvents(process.stdin);
+  process.stdin.setRawMode(true);
 
-	return new Promise((resolve, reject) => {
-		const keyMap = new Map();
-		let currentLine = null;
-		let line = 0;
-		log(prompt).print();
-		line++;
-		for (const choice of choices) {
-			if (!currentLine){
-				log(' -').append(log(choice).yellow().underline()).print();
-				currentLine = line;
-			} else {
-				log(` - ${choice}`).print();
-			}
-			keyMap.set(line, choice);
-			line++;
-		}
-		log('Use your')
-			.append(log('arrow keys').cyan())
-			.append('to highlight your choice and hit')
-			.append(log('enter').cyan())
-			.append('to select your answer').print();
-		
-		process.stdin.on('keypress', (str, key) => {
-			if (key.ctrl && key.name === 'c') {
-				process.exit();
-			} else {
-				if (key.name === 'up') {
-					if (currentLine > 1){
-						log(` - ${keyMap.get(currentLine)}`, currentLine).print();
-						currentLine--;
-						log(' -', currentLine).append(log(keyMap.get(currentLine)).yellow().underline()).print();
-					}
-				} else if (key.name === 'down') {
-					if (currentLine < choices.length){
-						log(` - ${keyMap.get(currentLine)}`, currentLine).print()
-						currentLine++;
-						log(' -', currentLine).append(log(keyMap.get(currentLine)).yellow().underline()).print();
+  return new Promise((resolve, reject) => {
+    const keyMap = new Map();
+    let currentLine = null;
+    let line = 0;
+    log(prompt).print();
+    line++;
+    for (const choice of choices) {
+      if (!currentLine){
+        log(' -').append(log(choice).yellow().underline()).print();
+        currentLine = line;
+      } else {
+        log(` - ${choice}`).print();
+      }
+      keyMap.set(line, choice);
+      line++;
+    }
+    log('Use your')
+      .append(log('arrow keys').cyan())
+      .append('to highlight your choice and hit')
+      .append(log('enter').cyan())
+      .append('to select your answer').print();
+    
+    rl.on('line', (line) => {
+      if (currentLine > 0 && currentLine <= choices.length) {
+        rl.close();
+        resolve(keyMap.get(currentLine));
+        process.stdout.write('\u001b[?25h');
+      }
+    });
 
-					}
-				} else if (key.name === 'return') {
-					resolve(keyMap.get(currentLine));
-					process.stdout.write('\u001b[?25h');
-				}
-			}
-		});
-	});
+    process.stdin.on('keypress', (str, key) => {
+      if (key.ctrl && key.name === 'c') {
+        process.exit();
+      } else {
+        if (key.name === 'up') {
+          if (currentLine > 1){
+            log(` - ${keyMap.get(currentLine)}`, currentLine).print();
+            currentLine--;
+            log(' -', currentLine).append(log(keyMap.get(currentLine)).yellow().underline()).print();
+          }
+        } else if (key.name === 'down') {
+          if (currentLine < choices.length){
+            log(` - ${keyMap.get(currentLine)}`, currentLine).print()
+            currentLine++;
+            log(' -', currentLine).append(log(keyMap.get(currentLine)).yellow().underline()).print();
+          }
+        }
+      }
+    });
+  });
 };
+
 
 export const prompt = async (prompt: string | string[], choices?: string[]): Promise<string | string[]> => {
 	if (typeof prompt === 'string'){
