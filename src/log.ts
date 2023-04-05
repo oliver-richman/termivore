@@ -7,11 +7,14 @@ export class Logger {
   private message: string;
   private appendedMessages: (string | Logger)[];
 
-  constructor(message: string, row: number = currentRow) {
-    if (row !== currentRow) {
+  constructor(message: string, row?: number) {
+    if (row !== undefined) {
+      this.row = row;
       this.existingRow = true;
+    } else {
+      this.row = currentRow;
+      this.existingRow = false;
     }
-    this.row = row;
     this.message = message;
     this.appendedMessages = [];
   }
@@ -191,7 +194,7 @@ export class Logger {
 }
 
 export function log(message: string, row?: number): Logger {
-  if (row) {
+  if (row !== undefined) {
     return new Logger(message, row);
   } else {
     return new Logger(message);
