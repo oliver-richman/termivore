@@ -3,11 +3,15 @@ let currentRow = 0;
 
 export class Logger {
   private row: number;
+  private existingRow: boolean;
   private message: string;
   private appendedMessages: (string | Logger)[];
 
-  constructor(message: string) {
-    this.row = currentRow;
+  constructor(message: string, row: number = currentRow) {
+    if (row !== currentRow) {
+      this.existingRow = true;
+    }
+    this.row = row;
     this.message = message;
     this.appendedMessages = [];
   }
@@ -144,19 +148,25 @@ export class Logger {
     return this;
   }
 
-  public replace(message: string): void {
+  private replace(message: string): void {
   const rowsToGoUp = currentRow - this.row;
   process.stdout.write(`\x1b[${rowsToGoUp}A\x1b[2K`);
   process.stdout.write(`${message}\n`);
   process.stdout.write(`\x1b[${rowsToGoUp}B`);
   }
 
-  public print(): void {
+  public print(): number {
     const message = [this.message, ...this.appendedMessages].join(' ');
     const formattedMessage = `${message}${getAnsiCode('reset')}`;
     const cleanedMessage = removeDuplicateResetCodes(formattedMessage);
-    writeToTerminal(cleanedMessage, false, true);
-    currentRow++;
+
+    if (this.existingRow){
+      this.replace(cleanedMessage);
+    } else {
+      writeToTerminal(cleanedMessage, false, true);
+      currentRow++;
+    }
+    return this.row;
   }
 
   private _rgb(rgb: (string | number)[], background: boolean): Logger {
@@ -180,6 +190,10 @@ export class Logger {
   }
 }
 
-export function log(message: string): Logger {
-  return new Logger(message);
+export function log(message: string, row?: number): Logger {
+  if (row) {
+    return new Logger(message, row);
+  } else {
+    return new Logger(message);
+  }
 }
