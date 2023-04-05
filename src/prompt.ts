@@ -35,58 +35,64 @@ function listen(): Promise<void> {
 
 
 const makeChoice = (prompt: string, choices: string[]): Promise<string> => {
-  process.stdout.write('\u001b[?25l');
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  readline.emitKeypressEvents(process.stdin);
-  process.stdin.setRawMode(true);
-
   return new Promise((resolve, reject) => {
-    const keyMap = new Map();
-    let currentLine = null;
-    let line = 0;
+	process.stdout.write('\u001b[?25l');
+	const rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout,
+	});
+	readline.emitKeypressEvents(process.stdin);
+	process.stdin.setRawMode(true);
+
+    let keyMap = new Map();
     log(prompt).print();
-    line++;
     for (const choice of choices) {
-      if (!currentLine){
-        log(' -').append(log(choice).yellow().underline()).print();
-        currentLine = line;
-      } else {
-        log(` - ${choice}`).print();
-      }
-      keyMap.set(line, choice);
-      line++;
+		let line;
+
+		if (!keyMap.size){
+			line = log(' -').append(log(choice).yellow().underline()).print();
+		} else {
+			line = log(` - ${choice}`).print();
+		}
+
+		keyMap.set(line, choice);
     }
     log('Use your')
       .append(log('arrow keys').cyan())
       .append('to highlight your choice and hit')
       .append(log('enter').cyan())
       .append('to select your answer').print();
-    
-    rl.on('line', (line) => {
-      if (currentLine > 0 && currentLine <= choices.length) {
-        rl.close();
-        resolve(keyMap.get(currentLine));
-        process.stdout.write('\u001b[?25h');
-      }
-    });
 
+	let firstKey = keyMap.keys().next().value;
+	let lastKey = Array.from(keyMap)[keyMap.size - 1][0]
+	let currentLine = firstKey;
+
+	const str = Array.from(keyMap)
+  .map(([key, value]) => `${key}=>${value}`)
+  .join(', ');
+
+  	process.removeAllListeners();
     process.stdin.on('keypress', (str, key) => {
       if (key.ctrl && key.name === 'c') {
         process.exit();
       } else {
-        if (key.name === 'up') {
-          if (currentLine > 1){
-            log(` - ${keyMap.get(currentLine)}`, currentLine).print();
-            currentLine--;
+		if (key.name === 'return'){
+			resolve(keyMap.get(currentLine));
+			process.stdout.write('\u001b[?25h');
+			currentLine = null;
+			firstKey = null;
+			lastKey = null;
+			rl.close();
+		} else if (key.name === 'up') {
+          if (currentLine > firstKey){
+			log(` - ${keyMap.get(currentLine)}`, currentLine).print();
+			currentLine--;
             log(' -', currentLine).append(log(keyMap.get(currentLine)).yellow().underline()).print();
           }
         } else if (key.name === 'down') {
-          if (currentLine < choices.length){
-            log(` - ${keyMap.get(currentLine)}`, currentLine).print()
-            currentLine++;
+          if (currentLine < lastKey){
+			log(` - ${keyMap.get(currentLine)}`, currentLine).print()
+			currentLine++;
             log(' -', currentLine).append(log(keyMap.get(currentLine)).yellow().underline()).print();
           }
         }
@@ -101,7 +107,8 @@ export const prompt = async (prompt: string | string[], choices?: string[]): Pro
 		if (choices === undefined) {
 			return await askQuestion(prompt);
 		} else {
-			return await makeChoice(prompt, choices);
+			const choice = await makeChoice(prompt, choices);
+			return choice;
 		}
 	} else {
 		const answers = [];
