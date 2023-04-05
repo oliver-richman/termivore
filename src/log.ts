@@ -1,10 +1,20 @@
 import { writeToTerminal, ansiCodes, removeDuplicateResetCodes, getAnsiCode } from "./utils";
+let currentRow = 0;
 
 export class Logger {
+  private row: number;
+  private existingRow: boolean;
   private message: string;
   private appendedMessages: (string | Logger)[];
 
-  constructor(message: string) {
+  constructor(message: string, row?: number) {
+    if (row !== undefined) {
+      this.row = row;
+      this.existingRow = true;
+    } else {
+      this.row = currentRow;
+      this.existingRow = false;
+    }
     this.message = message;
     this.appendedMessages = [];
   }
@@ -141,11 +151,25 @@ export class Logger {
     return this;
   }
 
-  public print(): void {
+  private replace(message: string): void {
+  const rowsToGoUp = currentRow - this.row;
+  process.stdout.write(`\x1b[${rowsToGoUp}A\x1b[2K`);
+  process.stdout.write(`${message}\n`);
+  process.stdout.write(`\x1b[${rowsToGoUp}B`);
+  }
+
+  public print(): number {
     const message = [this.message, ...this.appendedMessages].join(' ');
     const formattedMessage = `${message}${getAnsiCode('reset')}`;
     const cleanedMessage = removeDuplicateResetCodes(formattedMessage);
-    writeToTerminal(cleanedMessage, false, true);
+
+    if (this.existingRow){
+      this.replace(cleanedMessage);
+    } else {
+      writeToTerminal(cleanedMessage, false, true);
+      currentRow++;
+    }
+    return this.row;
   }
 
   private _rgb(rgb: (string | number)[], background: boolean): Logger {
@@ -169,6 +193,10 @@ export class Logger {
   }
 }
 
-export function log(message: string): Logger {
-  return new Logger(message);
+export function log(message: string, row?: number): Logger {
+  if (row !== undefined) {
+    return new Logger(message, row);
+  } else {
+    return new Logger(message);
+  }
 }

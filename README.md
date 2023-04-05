@@ -185,6 +185,17 @@ log('Hello').bold().red().print();
 // Hello (bold and red)
 ```
 
+Replace an existing log with something new:
+```typescript
+const myLog = log('searching...').print();
+log('this log won\'t change').print();
+// do something
+log('completed search', myLog).green().print();
+```
+This allows you to change existing logs without complexities:
+
+![Example of replacing log text working](https://github.com/oliver-richman/termivore/blob/master/assets/log-replace-example.gif?raw=true)
+
 **Chainable Methods**
 
 The log method has the following methods that can be chained to it:
