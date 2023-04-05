@@ -5,6 +5,22 @@ export const writeToTerminal = (textToWrite: string, clearPreviousText = false, 
 	process.stdout.write(`${clearLine}${clearToStart}${textToWrite}${clearPreviousText ? '' : '\r'}${newLine}`);
 }
 
+export const hideCursor = (): void => {
+	process.stdout.write('\u001b[?25l');
+}
+
+export const showCursor = (): void => {
+	process.stdout.write('\u001b[?25h');
+}
+
+export const getFirstKeyFromMap = (map: Map<any, any>) => {
+	return map.keys().next().value
+}
+
+export const getLastKeyFromMap = (map: Map<any, any>) => {
+	return Array.from(map)[map.size - 1][0]
+}
+
 export const joinWithConjunction = (array: (string | number | boolean)[], conjunction: string): string => {
   if (!array.length) return "";
   
