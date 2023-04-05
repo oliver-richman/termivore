@@ -58,6 +58,8 @@ You will now be able to import the methods/classes needed, see [usage](#usage) f
 
 ## **Usage**
 
+<br />
+
 ### 🚀 **CLI Command Creation**
 The CLI class allows you to quickly setup a command line interface, adding commands with arguments, options and a built in help command
 
@@ -95,6 +97,7 @@ This also implements a help command (which can be disabled if necessary), so run
 }
 ```
 
+<br />
 
 ### 🎡 **Spinner**
 The Spinner class provides an easy way to show a spinner on the command line to indicate loading. It can be used like so:
@@ -166,6 +169,8 @@ spinner.stop();
 This example will display a spinner with custom frames, icon and stop text, and will change the text next to the spinner after the first async method has finished. After the second async method finishes, the spinner will be stopped and the stop icon and stop text will be displayed.
 
 ![Example of Termivore Spinner with custom options](https://github.com/oliver-richman/termivore/blob/master/assets/termivore-spinner.gif?raw=true)
+
+<br />
 
 ### **📝 Logger**
 The Logger class provides an easy way to format and print messages to the command line. It can be used like so:
@@ -274,6 +279,10 @@ log('The quick brown fox').cyan().append('jumped over the').red().append(log('la
 
 <br />
 
+### **🕹️ Prompt**
+
+<br />
+
 ## **FAQ**
 
 Nothing here yet, if you have a question you want answering, please raise an issue on the GitHub repository, using the Question template.
@@ -313,3 +322,5 @@ Termivore is distributed under the [Apache License, Version 2.0](https://www.apa
 Please note that this is not a comprehensive list of the terms and conditions of the Apache License, Version 2.0. For the full text of Termivore's license agreement, please see the link provided above.
 
 [Termivore License](https://github.com/oliver-richman/termivore/blob/master/LICENSE)
+
+<br />
