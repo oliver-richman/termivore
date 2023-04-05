@@ -6,7 +6,7 @@ const logMakeChoiceInstructions = () => {
 		.append(log('arrow keys').cyan())
 		.append('to highlight your choice and hit')
 		.append(log('enter').cyan())
-		.append('to select your answer').print();
+		.append('to select your answer').italic().print();
 }
 
 const logChoicesAndCreateMap = (choices: string[]): Map<number, string> => {
@@ -46,11 +46,12 @@ const onArrowDownKey = (currentLine: number, keyMap: Map<number, string>, lastKe
 export const makeChoice = (prompt: string, choices: string[], showInstructions: boolean = true): Promise<string> => {
 	hideCursor();
 
-    log(prompt).print();
-    let keyMap = logChoicesAndCreateMap(choices);
 	if (showInstructions) {
 		logMakeChoiceInstructions();
 	}
+
+	log(prompt).bold().print();
+    let keyMap = logChoicesAndCreateMap(choices);
 
 	let [firstKey, lastKey] = [getFirstKeyFromMap(keyMap), getLastKeyFromMap(keyMap)];
 	let currentLine = firstKey;
