@@ -33,10 +33,10 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
 ## **Features**
 
 - 🚀 **[CLI Command Creation](#🚀-cli-command-creation)**: users can easily create and customize their own CLI commands with arguments/options and actions.
-- 🎡 [**Spinner**](#🎡-spinner): display an animated spinner to indicate loading
+- 🎡 **[Spinner](#🎡-spinner)**: display an animated spinner to indicate loading
 - 📊 **Progress Bar** (SOON): display a progress bar with percentage and ETA
 - 📜 **Table** (SOON): print data in a tabular format with support for pagination, sorting, and filtering
-- 📝 [**Logger**](#📝-logger): log messages to the console with customizable colors and styles
+- 📝 **[Logger](#📝-logger)**: log messages to the console with customizable colors and styles
 - 🕹️ **Prompt** (SOON): prompt the user for input with customizable options and validation
 - 🎚️ **Slider** (SOON): allow the user to input a value using a slider with customizable range and step
 - 🌈 **Colors and Styles** (SOON): add colors and styles to text output with support for ANSI escape codes, RGB and Hex
@@ -184,6 +184,17 @@ Copy code
 log('Hello').bold().red().print();
 // Hello (bold and red)
 ```
+
+Replace an existing log with something new:
+```typescript
+const myLog = log('searching...').print();
+log('this log won\'t change').print();
+// do something
+log('completed search', myLog).green().print();
+```
+This allows you to change existing logs without complexities:
+
+![Example of replacing log text working](https://github.com/oliver-richman/termivore/blob/master/assets/log-replace-example.gif?raw=true)
 
 **Chainable Methods**
 
