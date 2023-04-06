@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Define the regular expression for the commit message format
+COMMIT_REGEX='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.+\))?: .{1,72}'
+
+# Get the commit message file and source
+COMMIT_MSG_FILE=$1
+COMMIT_MSG_SOURCE=$2
+
+# Validate the commit message format
+if [[ "$COMMIT_MSG_SOURCE" == "message" ]]; then
+  COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+  if [[ ! "$COMMIT_MSG" =~ $COMMIT_REGEX ]]; then
+    # Print an error message explaining the required commit message format
+    echo "Invalid commit message format! 😕"
+    echo ""
+    echo "The commit message must follow the conventional commit message format:"
+    echo "  <type>([optional scope]): <description>"
+    echo ""
+    echo "The type can be one of the following:"
+    echo "  build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test"
+    echo "The scope is optional and can be any string enclosed in parentheses."
+    echo "The description is a short summary of the changes (up to 72 characters)."
+    echo ""
+    echo "Example commit messages:"
+    echo "  feat: add login button"
+    echo "  fix(auth): handle empty password field"
+    echo "  chore: update dependencies"
+    echo ""
+    echo "Your commit message was:"
+    echo "$COMMIT_MSG"
+    echo ""
+    exit 1
+  fi
+fi
