@@ -1,4 +1,4 @@
-### 🎡 **Spinner**
+### **Spinner**
 The Spinner class provides an easy way to show a spinner on the command line to indicate loading. It can be used like so:
 
 ```typescript
@@ -68,3 +68,4 @@ spinner.stop();
 This example will display a spinner with custom frames, icon and stop text, and will change the text next to the spinner after the first async method has finished. After the second async method finishes, the spinner will be stopped and the stop icon and stop text will be displayed.
 
 ![Example of Termivore Spinner with custom options](https://github.com/oliver-richman/termivore/blob/master/assets/termivore-spinner.gif?raw=true)
+---

@@ -1,4 +1,4 @@
-### **📝 Logger**
+### **Logger**
 The Logger class provides an easy way to format and print messages to the command line. It can be used like so:
 
 ```typescript
@@ -102,3 +102,4 @@ log('The quick brown fox').cyan().append('jumped over the').red().append(log('la
 ```
 
 ![Example of Logger class with message appending and nested Logger instances](https://github.com/oliver-richman/termivore/blob/master/assets/log-example-3.png?raw=true)
+---

@@ -21,10 +21,10 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [CLI Command Creation](#🚀-cli-command-creation)
-  - [Spinner](#🎡-spinner)
-  - [Logger](#📝-logger)
-  - [Prompt](#🕹️-prompt)
+  - [CLI Command Creation](#cli-command-creation)
+  - [Spinner](#spinner)
+  - [Logger](#logger)
+  - [Prompt](#prompt)
 - [Contributors](#contributors)
 - [FAQ](#faq)
 - [License](#license)
@@ -33,12 +33,12 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
 
 ## **Features**
 
-- 🚀 **[CLI Command Creation](#🚀-cli-command-creation)**: users can easily create and customize their own CLI commands with arguments/options and actions.
-- 🎡 **[Spinner](#🎡-spinner)**: display an animated spinner to indicate loading
+- 🚀 **[CLI Command Creation](#cli-command-creation)**: users can easily create and customize their own CLI commands with arguments/options and actions.
+- 🎡 **[Spinner](#spinner)**: display an animated spinner to indicate loading
 - 📊 **Progress Bar** (SOON): display a progress bar with percentage and ETA
 - 📜 **Table** (SOON): print data in a tabular format with support for pagination, sorting, and filtering
-- 📝 **[Logger](#📝-logger)**: log messages to the console with customizable colors and styles
-- 🕹️ **[Prompt](#🕹️-prompt)**: prompt the user for input with customizable options and validation
+- 📝 **[Logger](#logger)**: log messages to the console with customizable colors and styles
+- 🕹️ **[Prompt](#prompt)**: prompt the user for input with customizable options and validation
 - 🎚️ **Slider** (SOON): allow the user to input a value using a slider with customizable range and step
 - 🌈 **Colors and Styles** (SOON): add colors and styles to text output with support for ANSI escape codes, RGB and Hex
 - 🧐 **Argument Parsing** (SOON): parse command line arguments with support for options, flags, and values
@@ -61,7 +61,7 @@ You will now be able to import the methods/classes needed, see [usage](#usage) f
 
 <br />
 
-### 🚀 **CLI Command Creation**
+### **CLI Command Creation**
 The CLI class allows you to quickly setup a command line interface, adding commands with arguments, options and a built in help command
 
 ```typescript
@@ -97,10 +97,11 @@ This also implements a help command (which can be disabled if necessary), so run
 	"myCli": "path/to/file"
 }
 ```
+---
 
 <br />
 
-### 🎡 **Spinner**
+### **Spinner**
 The Spinner class provides an easy way to show a spinner on the command line to indicate loading. It can be used like so:
 
 ```typescript
@@ -170,10 +171,11 @@ spinner.stop();
 This example will display a spinner with custom frames, icon and stop text, and will change the text next to the spinner after the first async method has finished. After the second async method finishes, the spinner will be stopped and the stop icon and stop text will be displayed.
 
 ![Example of Termivore Spinner with custom options](https://github.com/oliver-richman/termivore/blob/master/assets/termivore-spinner.gif?raw=true)
+---
 
 <br />
 
-### **📝 Logger**
+### **Logger**
 The Logger class provides an easy way to format and print messages to the command line. It can be used like so:
 
 ```typescript
@@ -277,10 +279,11 @@ log('The quick brown fox').cyan().append('jumped over the').red().append(log('la
 ```
 
 ![Example of Logger class with message appending and nested Logger instances](https://github.com/oliver-richman/termivore/blob/master/assets/log-example-3.png?raw=true)
+---
 
 <br />
 
-### **🕹️ Prompt**
+### **Prompt**
 The prompt method allows you to 'prompt' the user for their input. It can be used to ask your user a question (or multiple) and receive their answer for your use. You can also give the user a list of options to choose from rather than typing their answer in.
 
 **Ask a question:**
@@ -317,7 +320,7 @@ log(`Yum! I like ${fruit} too!`).print();
 ```
 
 ![Example of a question requiring a user's choice](https://github.com/oliver-richman/termivore/blob/master/assets/prompt-example-3.gif?raw=true)
-
+---
 
 <br />
 

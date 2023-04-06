@@ -1,4 +1,4 @@
-### 🚀 **CLI Command Creation**
+### **CLI Command Creation**
 The CLI class allows you to quickly setup a command line interface, adding commands with arguments, options and a built in help command
 
 ```typescript
@@ -34,3 +34,4 @@ This also implements a help command (which can be disabled if necessary), so run
 	"myCli": "path/to/file"
 }
 ```
+---

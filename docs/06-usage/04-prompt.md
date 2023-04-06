@@ -1,4 +1,4 @@
-### **🕹️ Prompt**
+### **Prompt**
 The prompt method allows you to 'prompt' the user for their input. It can be used to ask your user a question (or multiple) and receive their answer for your use. You can also give the user a list of options to choose from rather than typing their answer in.
 
 **Ask a question:**
@@ -35,3 +35,4 @@ log(`Yum! I like ${fruit} too!`).print();
 ```
 
 ![Example of a question requiring a user's choice](https://github.com/oliver-richman/termivore/blob/master/assets/prompt-example-3.gif?raw=true)
+---
