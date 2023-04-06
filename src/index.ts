@@ -2,6 +2,7 @@ export { Spinner } from './spinner';
 export { CLI } from './cli';
 export { log } from './log';
 export { prompt } from './prompt';
+export { openLink } from './open-link';
 
 export { ISpinnerOptions } from './types';
 
