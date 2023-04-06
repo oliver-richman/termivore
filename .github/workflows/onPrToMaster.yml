@@ -6,7 +6,7 @@ on:
             - master
 
 jobs:
-    build:
+    lint-test-build:
         runs-on: ubuntu-latest
 
         steps:
@@ -19,6 +19,8 @@ jobs:
               run: npm install
             - name: Lint
               run: npm run lint
+            - name: Lint YML
+              run: npm run lint:yaml
             # - name: Test
             #   run: npm test
             - name: Build
