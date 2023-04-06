@@ -7,7 +7,6 @@
     "termivore": "dist/termivoreCli.js"
   },
   "scripts": {
-    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
     "watch": "tsc --watch",
     "build": "tsc",
     "test": "jest --coverage",
@@ -65,8 +64,6 @@
   },
   "homepage": "https://github.com/oliver-richman/termivore#readme",
   "devDependencies": {
-    "@commitlint/cli": "^17.5.1",
-    "@commitlint/config-conventional": "^17.4.4",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
     "husky": "^8.0.0",
