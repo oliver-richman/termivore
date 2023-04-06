@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 
-import { CLI } from "./cli";
-import { log } from "./log";
+import { CLI } from './cli';
+import { log } from './log';
 
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 
 const termivoreCli = new CLI('termivore', {
-	version: '1.3.0'
+	version: '1.3.0',
 });
 
 termivoreCli
 	.addCommand('create')
 	.description('Creates a new CLI project with everything needed to get up and running')
 	.argument('project-name', 'The name of the project and directory to create')
-	.action(({args}) => {
+	.action(({ args }) => {
 		log(`This functionality hasn't been implemented yet`).red().bold().print();
 	});
 

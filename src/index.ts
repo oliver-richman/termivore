@@ -35,7 +35,6 @@ export { ISpinnerOptions } from './types';
 // // | Column 1, Value 3 | Column 2, Value 3 |
 // // |---------------------------------------|
 
-
 // const answer = await prompt('Name?');
 // // Name? oliver
 
@@ -76,4 +75,3 @@ export { ISpinnerOptions } from './types';
 
 // cli.start();
 // // myCli create myProject -s
-

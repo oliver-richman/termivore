@@ -1,71 +1,81 @@
 {
-  "name": "termivore",
-  "version": "1.3.3",
-  "description": "All-in-one package for creating perfect CLIs",
-  "main": "dist/index.js",
-  "bin": {
-    "termivore": "dist/termivoreCli.js"
-  },
-  "scripts": {
-    "watch": "tsc --watch",
-    "build": "tsc",
-    "test": "jest --coverage",
-    "publish-termivore": "npm run build && node -e \"console.log('Built with no problems')\" || node -e \"console.error('Failed to build'); process.exit(1)\" && npm run docs && node -e \"console.log('Compiled readme successfully')\" || node -e \"console.error('Failed to compile readme'); process.exit(1)\" && read -p 'Dry run succeeded. Publish package? (y/N) ' confirm && [ \"$confirm\" == \"y\" ] && npm publish",
-    "docs": "node scripts/compileDocumentation.js"
-  },
-  "readme": "README.md",
-  "files": [
-    "dist/**",
-    "README.md"
-  ],
-  "keywords": [
-    "cli",
-    "command line interface",
-    "console",
-    "terminal",
-    "spinner",
-    "progress bar",
-    "table printing",
-    "user input",
-    "argument validation",
-    "option parsing",
-    "devops",
-    "automation",
-    "logging",
-    "colors",
-    "styles",
-    "rgb",
-    "hexadecimal",
-    "auto-suggestion",
-    "fuzzy search",
-    "interactive",
-    "mouse events",
-    "key bindings",
-    "command line tool",
-    "command line parser",
-    "command line application",
-    "cli tool",
-    "cli parser",
-    "cli application",
-    "cli development",
-    "cli framework",
-    "terminal interface",
-    "interface"
-  ],
-  "author": "Oliver Richman",
-  "license": "Apache-2.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oliver-richman/termivore.git"
-  },
-  "bugs": {
-    "url": "https://github.com/oliver-richman/termivore/issues"
-  },
-  "homepage": "https://github.com/oliver-richman/termivore#readme",
-  "devDependencies": {
-    "@types/jest": "^29.5.0",
-    "@types/node": "^18.15.11",
-    "jest": "^29.5.0",
-    "typescript": "^5.0.3"
-  }
+	"name": "termivore",
+	"version": "1.3.4",
+	"description": "All-in-one package for creating perfect CLIs",
+	"main": "dist/index.js",
+	"bin": {
+		"termivore": "dist/termivoreCli.js"
+	},
+	"scripts": {
+		"watch": "tsc --watch",
+		"build": "tsc",
+		"test": "jest --coverage",
+		"lint:yaml": "yamllint .github/workflows/*.yml",
+		"lint": "eslint src/**/*.ts",
+		"lint:fix": "eslint src/**/*.ts --fix",
+		"prepublishOnly": "npm run build && npm run docs",
+		"docs": "node scripts/compileDocumentation.js",
+		"prepare": "husky install"
+	},
+	"readme": "README.md",
+	"files": [
+		"dist/**",
+		"README.md"
+	],
+	"keywords": [
+		"cli",
+		"command line interface",
+		"console",
+		"terminal",
+		"spinner",
+		"progress bar",
+		"table printing",
+		"user input",
+		"argument validation",
+		"option parsing",
+		"devops",
+		"automation",
+		"logging",
+		"colors",
+		"styles",
+		"rgb",
+		"hexadecimal",
+		"auto-suggestion",
+		"fuzzy search",
+		"interactive",
+		"mouse events",
+		"key bindings",
+		"command line tool",
+		"command line parser",
+		"command line application",
+		"cli tool",
+		"cli parser",
+		"cli application",
+		"cli development",
+		"cli framework",
+		"terminal interface",
+		"interface"
+	],
+	"author": "Oliver Richman",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/oliver-richman/termivore.git"
+	},
+	"bugs": {
+		"url": "https://github.com/oliver-richman/termivore/issues"
+	},
+	"homepage": "https://github.com/oliver-richman/termivore#readme",
+	"devDependencies": {
+		"@types/jest": "^29.5.0",
+		"@types/node": "^18.15.11",
+		"@typescript-eslint/eslint-plugin": "^5.57.1",
+		"eslint": "^8.37.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"husky": "^8.0.0",
+		"jest": "^29.5.0",
+		"typescript": "^5.0.3",
+		"yaml-lint": "^1.7.0"
+	}
 }

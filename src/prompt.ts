@@ -1,8 +1,12 @@
 import { askQuestion } from './ask-question';
 import { makeChoice } from './make-choice';
 
-export const prompt = async (prompt: string | string[], choices?: string[], showInstructionsForChoices: boolean = true): Promise<string | string[]> => {
-	if (typeof prompt === 'string'){
+export const prompt = async (
+	prompt: string | string[],
+	choices?: string[],
+	showInstructionsForChoices = true,
+): Promise<string | string[]> => {
+	if (typeof prompt === 'string') {
 		if (choices === undefined) {
 			return await askQuestion(prompt);
 		} else {
@@ -15,4 +19,4 @@ export const prompt = async (prompt: string | string[], choices?: string[], show
 		}
 		return answers;
 	}
-}
+};
