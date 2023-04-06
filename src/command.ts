@@ -1,4 +1,4 @@
-import { IAction, ICommandArgument, ICommandOption} from './types';
+import { IAction, ICommandArgument, ICommandOption } from './types';
 
 export class Command {
 	public name: string;
@@ -17,21 +17,21 @@ export class Command {
 		return this;
 	}
 
-	public argument(name: string, description: string = ''): Command {
+	public argument(name: string, description = ''): Command {
 		this.arguments.push({
 			name,
-			description
+			description,
 		});
 
 		return this;
 	}
 
-	public option(doubleDashName: string, alternativeNames: string[] = [], description: string = ''): Command {
+	public option(doubleDashName: string, alternativeNames: string[] = [], description = ''): Command {
 		this.options.push({
 			doubleDashName,
 			alternativeNames,
-			description
-		})
+			description,
+		});
 		return this;
 	}
 

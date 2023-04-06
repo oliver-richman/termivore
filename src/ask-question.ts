@@ -10,4 +10,4 @@ export const askQuestion = (question: string): Promise<string> => {
 			rli.close();
 		});
 	});
-}
+};

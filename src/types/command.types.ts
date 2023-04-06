@@ -12,8 +12,8 @@ export interface ICommandOption {
 export type IAction = (actionData?: IActionData) => void;
 
 export interface IActionData {
-	args: {[key: string]: string};
-	opts: {[key: string]: boolean};
+	args: { [key: string]: string };
+	opts: { [key: string]: boolean };
 }
 
 export interface ICommand {
