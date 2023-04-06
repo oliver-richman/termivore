@@ -6,7 +6,7 @@ on:
             - 'publish/live'
 
 jobs:
-    build:
+    publish:
         runs-on: ubuntu-latest
 
         steps:
@@ -20,4 +20,4 @@ jobs:
             - name: Build
               run: npm run build
             - name: Publish
-              run: npm run publish --access=public
+              run: npm publish --access=public
