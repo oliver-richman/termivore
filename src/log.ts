@@ -157,9 +157,12 @@ export class Logger {
     const cleanedMessage = removeDuplicateResetCodes(formattedMessage);
 
     const numberOfRows = currentRow - this.row;
-    process.stdout.write(`\x1b[${numberOfRows}A\x1b[2K`);
-    process.stdout.write(`${cleanedMessage}\n`);
-    process.stdout.write(`\x1b[${numberOfRows}B`);
+    const moveUpXRows = `\x1b[${numberOfRows}A`;
+    const moveDownXRows = `\x1b[${numberOfRows}B`
+    const clearRow = '\x1b[2K';
+    const moveCursorToStartOfRow = '\x1B[0G';
+
+    process.stdout.write(`${moveUpXRows}${clearRow}${cleanedMessage}${moveCursorToStartOfRow}${moveDownXRows}`);
   }
 
   public print(): number {

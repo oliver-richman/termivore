@@ -10,7 +10,7 @@
     "watch": "tsc --watch",
     "build": "tsc",
     "test": "jest --coverage",
-    "prepublishOnly": "npm run build && npm run docs",
+    "publish-termivore": "npm run build && node -e \"console.log('Built with no problems')\" || node -e \"console.error('Failed to build'); process.exit(1)\" && npm run docs && node -e \"console.log('Compiled readme successfully')\" || node -e \"console.error('Failed to compile readme'); process.exit(1)\" && read -p 'Dry run succeeded. Publish package? (y/N) ' confirm && [ \"$confirm\" == \"y\" ] && npm publish",
     "docs": "node scripts/compileDocumentation.js"
   },
   "files": [

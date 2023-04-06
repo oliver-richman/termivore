@@ -24,6 +24,7 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
   - [CLI Command Creation](#🚀-cli-command-creation)
   - [Spinner](#🎡-spinner)
   - [Logger](#📝-logger)
+  - [Prompt](#🕹️-prompt)
 - [Contributors](#contributors)
 - [FAQ](#faq)
 - [License](#license)
@@ -37,7 +38,7 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
 - 📊 **Progress Bar** (SOON): display a progress bar with percentage and ETA
 - 📜 **Table** (SOON): print data in a tabular format with support for pagination, sorting, and filtering
 - 📝 **[Logger](#📝-logger)**: log messages to the console with customizable colors and styles
-- 🕹️ **Prompt** (SOON): prompt the user for input with customizable options and validation
+- 🕹️ **[Prompt](#🕹️-prompt)**: prompt the user for input with customizable options and validation
 - 🎚️ **Slider** (SOON): allow the user to input a value using a slider with customizable range and step
 - 🌈 **Colors and Styles** (SOON): add colors and styles to text output with support for ANSI escape codes, RGB and Hex
 - 🧐 **Argument Parsing** (SOON): parse command line arguments with support for options, flags, and values
@@ -280,6 +281,43 @@ log('The quick brown fox').cyan().append('jumped over the').red().append(log('la
 <br />
 
 ### **🕹️ Prompt**
+The prompt method allows you to 'prompt' the user for their input. It can be used to ask your user a question (or multiple) and receive their answer for your use. You can also give the user a list of options to choose from rather than typing their answer in.
+
+**Ask a question:**
+```typescript
+import { prompt, log } from 'termivore';
+
+const name = await prompt(`What's your name?`);
+log(`Hi ${name}! Great to meet you!`).print();
+```
+
+![Example of a simple prompt](https://github.com/oliver-richman/termivore/blob/master/assets/prompt-example-1.gif?raw=true)
+
+**Ask multiple questions in a row:**
+```typescript
+import { prompt, log } from 'termivore';
+
+const [age, location] = await prompt([
+	`What's your age?`,
+	'Where do you live?'
+]);
+
+log(`Nice! ${age} in ${location} must be fun!`).print();
+```
+
+![Example of a multi-question prompt](https://github.com/oliver-richman/termivore/blob/master/assets/prompt-example-2.gif?raw=true)
+
+**Ask for a choice:**
+```typescript
+import { prompt, log } from 'termivore';
+const fruits = ['Apples', 'Oranges', 'Bananas', 'Pears'];
+const fruit = await prompt(`What's your favourite fruit?`, fruits);
+
+log(`Yum! I like ${fruit} too!`).print();
+```
+
+![Example of a question requiring a user's choice](https://github.com/oliver-richman/termivore/blob/master/assets/prompt-example-3.gif?raw=true)
+
 
 <br />
 
