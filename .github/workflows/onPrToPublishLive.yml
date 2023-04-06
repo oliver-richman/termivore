@@ -1,9 +1,9 @@
-name: PR -> Master Workflow
+name: PR Merged into publish/live
 
 on:
-    pull_request:
+    push:
         branches:
-            - master
+            - 'publish/live'
 
 jobs:
     build:
@@ -17,9 +17,7 @@ jobs:
                   node-version: '16'
             - name: Install Dependencies
               run: npm install
-            - name: Lint
-              run: npm run lint
-            # - name: Test
-            #   run: npm test
             - name: Build
               run: npm run build
+            - name: Publish
+              run: npm run publish --access=public
