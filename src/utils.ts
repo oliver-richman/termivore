@@ -1,9 +1,49 @@
+import { createInterface, Interface, emitKeypressEvents } from 'readline';
+
 export const writeToTerminal = (textToWrite: string, clearPreviousText = false, addNewLine = false) => {
 	const clearLine = '\x1B[2K';
 	const clearToStart = '\x1B[0G';
 	const newLine = addNewLine ? '\n' : '';
 	process.stdout.write(`${clearLine}${clearToStart}${textToWrite}${clearPreviousText ? '' : '\r'}${newLine}`);
 }
+
+export const hideCursor = (): void => {
+	process.stdout.write('\u001b[?25l');
+}
+
+export const showCursor = (): void => {
+	process.stdout.write('\u001b[?25h');
+}
+
+export const getFirstKeyFromMap = (map: Map<any, any>) => {
+	return map.keys().next().value
+}
+
+export const getLastKeyFromMap = (map: Map<any, any>) => {
+	return Array.from(map)[map.size - 1][0]
+}
+
+export const createReadlineInterface = (): Interface => {
+	return createInterface({
+		input: process.stdin,
+		output: process.stdout,
+	});
+}
+
+export const listenForKeyPress = (callback: (key: string, rli: Interface) => void) => {
+  emitKeypressEvents(process.stdin);
+  process.stdin.setRawMode(true);
+  process.stdin.resume();
+  const rli = createReadlineInterface();
+
+  process.stdin.on('keypress', (str, key) => {
+    if (key.ctrl && key.name === 'c') {
+      process.exit();
+    } else {
+      callback(key.name, rli);
+    }
+  });
+};
 
 export const joinWithConjunction = (array: (string | number | boolean)[], conjunction: string): string => {
   if (!array.length) return "";

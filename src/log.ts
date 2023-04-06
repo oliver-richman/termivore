@@ -151,11 +151,18 @@ export class Logger {
     return this;
   }
 
-  private replace(message: string): void {
-  const rowsToGoUp = currentRow - this.row;
-  process.stdout.write(`\x1b[${rowsToGoUp}A\x1b[2K`);
-  process.stdout.write(`${message}\n`);
-  process.stdout.write(`\x1b[${rowsToGoUp}B`);
+  private replace(): void {
+    const message = [this.message, ...this.appendedMessages].join(' ');
+    const formattedMessage = `${message}${getAnsiCode('reset')}`;
+    const cleanedMessage = removeDuplicateResetCodes(formattedMessage);
+
+    const numberOfRows = currentRow - this.row;
+    const moveUpXRows = `\x1b[${numberOfRows}A`;
+    const moveDownXRows = `\x1b[${numberOfRows}B`
+    const clearRow = '\x1b[2K';
+    const moveCursorToStartOfRow = '\x1B[0G';
+
+    process.stdout.write(`${moveUpXRows}${clearRow}${cleanedMessage}${moveCursorToStartOfRow}${moveDownXRows}`);
   }
 
   public print(): number {
@@ -164,7 +171,7 @@ export class Logger {
     const cleanedMessage = removeDuplicateResetCodes(formattedMessage);
 
     if (this.existingRow){
-      this.replace(cleanedMessage);
+      this.replace();
     } else {
       writeToTerminal(cleanedMessage, false, true);
       currentRow++;
