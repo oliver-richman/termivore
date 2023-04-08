@@ -2,6 +2,8 @@
 
 -   [Features](#features)
 -   [Installation](#installation)
+    -   [Termivore CLI](#termivore-cli)
+    -   [Manual Installation](#manual-installation)
 -   [Usage](#usage)
     -   [CLI Command Creation](#cli-command-creation)
     -   [Spinner](#spinner)
