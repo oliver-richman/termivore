@@ -4,7 +4,7 @@ import { CLI } from './cli';
 import { IActionData } from './types';
 import { createNewCliProject } from './cli/create';
 
-const termivoreVersion = '2.0.0';
+const termivoreVersion = '2.0.1';
 const termivoreCli = new CLI('termivore', {
 	version: termivoreVersion,
 });
