@@ -5,6 +5,7 @@ export interface ICommandArgument {
 
 export interface ICommandOption {
 	doubleDashName: string;
+	type: IOptionType;
 	alternativeNames: string[];
 	description?: string;
 }
@@ -13,7 +14,7 @@ export type IAction = (actionData?: IActionData) => void;
 
 export interface IActionData {
 	args: { [key: string]: string };
-	opts: { [key: string]: boolean };
+	opts: { [key: string]: boolean | string };
 }
 
 export interface ICommand {
@@ -23,3 +24,5 @@ export interface ICommand {
 	options?: ICommandOption[];
 	action: IAction;
 }
+
+export type IOptionType = 'string' | 'number' | 'boolean';
