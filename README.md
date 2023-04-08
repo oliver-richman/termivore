@@ -83,8 +83,8 @@ If you don't want to go through all the questions, you can pass various argument
 `create <project-name> <root-command> --language --no-help --no-version --linting-preference --no-git`
 | Argument/Option | Description |   
 | --- | --- |
-|`project-name` | The name of the project and directory to create |
-|`root-command` | The root command of your cli, e.g. Termivore's root command is 'termivore' |
+| `<project-name>` | The name of the project and directory to create |
+| `<root-command>` | The root command of your cli, e.g. Termivore's root command is 'termivore' |
 | `--language` | The language of your project, must be either 'TypeScript' or 'JavaScript' (alternatively, use: `-l` or `--lang`) |
 | `--no-help` | Use this flag if you don	 want a help command to be created (alternatively, use: `-nh`)
 | `--no-version` | Use this flag if you don't want a -v flag to show your CLIs version (alternatively, use: `-nv`) |
