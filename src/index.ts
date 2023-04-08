@@ -4,7 +4,15 @@ export { log } from './log';
 export { prompt } from './prompt';
 export { openLink } from './open-link';
 
-export { ISpinnerOptions } from './types';
+export {
+	ISpinnerOptions,
+	ICommandArgument,
+	ICommandOption,
+	IAction,
+	IActionData,
+	ICommand,
+	IOptionType,
+} from './types';
 
 // log('Hello there');
 // // Hello there

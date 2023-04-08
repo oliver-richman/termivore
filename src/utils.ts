@@ -1,4 +1,6 @@
+import { access, lstat, rm } from 'fs/promises';
 import { createInterface, Interface, emitKeypressEvents } from 'readline';
+import { spawn } from 'child_process';
 
 export const writeToTerminal = (textToWrite: string, clearPreviousText = false, addNewLine = false) => {
 	const clearLine = '\x1B[2K';
@@ -100,4 +102,70 @@ export const removeDuplicateResetCodes = (message: string): string => {
 
 export const getAnsiCode = (style: string): string => {
 	return `\x1b[${ansiCodes[style]}m`;
+};
+
+export const runCommand = async (command: string, directoryToRunIn: string) => {
+	return new Promise<void>((resolve, reject) => {
+		const commandParts = command.split(' ');
+
+		const child = spawn(commandParts[0], commandParts.slice(1), { cwd: directoryToRunIn });
+
+		child.on('error', (err) => {
+			reject(err);
+		});
+
+		child.on('exit', (code) => {
+			if (code === 0) {
+				resolve();
+			} else {
+				reject(new Error(`${command} exited with code ${code}`));
+			}
+		});
+	});
+};
+
+export const isValidDirectoryName = (name: string): boolean => {
+	const invalidChars = /[<>:"/\\|?*]/;
+	// Reserved names for Windows
+	const reservedNames = /^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])$/i;
+
+	if (!name.trim()) {
+		return false;
+	}
+
+	if (invalidChars.test(name)) {
+		return false;
+	}
+
+	if (reservedNames.test(name)) {
+		return false;
+	}
+
+	// Check for control characters (0x00-0x1F)
+	for (const char of name) {
+		if (char.charCodeAt(0) >= 0x00 && char.charCodeAt(0) <= 0x1f) {
+			return false;
+		}
+	}
+
+	return true;
+};
+
+export const isValidRootCommand = (command: string): boolean => {
+	const validChars = /^[a-zA-Z0-9-_]+$/;
+	return validChars.test(command);
+};
+
+export const doesDirectoryExist = async (directory: string): Promise<boolean> => {
+	try {
+		await access(directory);
+		const stats = await lstat(directory);
+		return stats.isDirectory();
+	} catch (error) {
+		return false;
+	}
+};
+
+export const removeDirectory = async (directory: string) => {
+	await rm(directory, { recursive: true, force: true });
 };

@@ -39,7 +39,6 @@ export class CLI {
 			this.showVersion();
 			return;
 		}
-
 		const command = this.getCommand(commandName);
 		if (command) {
 			const args = this.buildArgs(command.arguments, consoleArgs);
@@ -47,7 +46,7 @@ export class CLI {
 			command.execute({ args, opts });
 		} else if (this.helpCommand) {
 			const helpCommand = this.getCommand('help');
-			helpCommand.execute();
+			helpCommand.execute({ args: { command: undefined }, opts: {} });
 		} else {
 			console.error('This command does not exist');
 		}
@@ -65,14 +64,18 @@ export class CLI {
 		let argIndex = 1;
 		const args = {};
 		for (const argument of commandArguments) {
-			args[toCamelCase(argument.name)] = consoleArgs[argIndex];
+			let argValue = undefined;
+			if (consoleArgs.length && consoleArgs[argIndex] && !consoleArgs[argIndex].startsWith('-')) {
+				argValue = consoleArgs[argIndex];
+			}
+			args[toCamelCase(argument.name)] = argValue;
 			argIndex++;
 		}
 
 		return args;
 	}
 
-	private buildOpts(commandOptions: ICommandOption[], consoleArgs: string[]): { [key: string]: boolean } {
+	private buildOpts(commandOptions: ICommandOption[], consoleArgs: string[]): { [key: string]: boolean | string } {
 		const dashOpts = consoleArgs.filter((arg) => arg.startsWith('-') && !arg.startsWith('--'));
 		const doubleDashOpts = consoleArgs.filter((arg) => arg.startsWith('--'));
 		const allOpts = [...dashOpts, ...doubleDashOpts];
@@ -80,12 +83,43 @@ export class CLI {
 
 		for (const commandOption of commandOptions) {
 			const optionKey = toCamelCase(commandOption.doubleDashName);
-			if (allOpts.includes(`--${commandOption.doubleDashName}`)) {
-				opts[optionKey] = true;
-			} else if (commandOption.alternativeNames.find((altName) => allOpts.includes(altName))) {
-				opts[optionKey] = true;
+			const flag = allOpts.find((opt) => {
+				const optFlag = opt.split('=')[0];
+				if (optFlag === `--${commandOption.doubleDashName}`) {
+					return opt;
+				} else if (commandOption.alternativeNames.includes(optFlag)) {
+					return opt;
+				}
+			});
+
+			if (flag) {
+				if (flag.includes('=')) {
+					const split = flag.split('=');
+					const value = split.slice(1).join('');
+					switch (commandOption.type) {
+						case 'string':
+							opts[optionKey] = value;
+							break;
+						case 'number':
+							opts[optionKey] = Number(value);
+							break;
+						case 'boolean':
+							if (value && value === 'false') {
+								opts[optionKey] = false;
+							} else {
+								opts[optionKey] = true;
+							}
+							break;
+					}
+				} else if (commandOption.type === 'boolean') {
+					opts[optionKey] = true;
+				} else {
+					throw new Error(
+						`'${commandOption.doubleDashName}' requires a value to be passed, e.g. '--${commandOption.doubleDashName}=valuegoeshere'`,
+					);
+				}
 			} else {
-				opts[optionKey] = false;
+				opts[optionKey] = undefined;
 			}
 		}
 
