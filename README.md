@@ -42,15 +42,14 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
 
 ## **Features**
 
--   🚀 **[CLI Command Creation](#cli-command-creation)**: users can easily create and customize their own CLI commands with arguments/options and actions.
--   🎡 **[Spinner](#spinner)**: display an animated spinner to indicate loading
+-   🚀 **[CLI Command Creation](https://oliver-richman.github.io/termivore-site/features/cli-commands/)**: users can easily create and customize their own CLI commands with arguments/options and actions.
+-   🎡 **[Spinner](https://oliver-richman.github.io/termivore-site/features/spinner/)**: display an animated spinner to indicate loading
+-   📝 **[Logger](#https://oliver-richman.github.io/termivore-site/features/logger/)**: log messages to the console with customizable colors and styles
+-   🕹️ **[Prompt](https://oliver-richman.github.io/termivore-site/features/prompt/)**: prompt the user for input with customizable options and validation
+-   🔗 **[Open Link](https://oliver-richman.github.io/termivore-site/features/open-link/)**: Open's the url passed to it in the user's default browser.
 -   📊 **Progress Bar** (SOON): display a progress bar with percentage and ETA
 -   📜 **Table** (SOON): print data in a tabular format with support for pagination, sorting, and filtering
--   📝 **[Logger](#logger)**: log messages to the console with customizable colors and styles
--   🕹️ **[Prompt](#prompt)**: prompt the user for input with customizable options and validation
--   🔗 **[Open Link](#open-link)**: Open's the url passed to it in the user's default browser.
 -   🎚️ **Slider** (SOON): allow the user to input a value using a slider with customizable range and step
--   🌈 **Colors and Styles** (SOON): add colors and styles to text output with support for ANSI escape codes, RGB and Hex
 -   🧐 **Argument Parsing** (SOON): parse command line arguments with support for options, flags, and values
 -   🤖 **Auto-suggestion** (SOON): provide auto-suggestion for command line input using fuzzy search
 -   🤝 **Interactive** (SOON): provide interactive command line interfaces with support for mouse events and key bindings
@@ -59,6 +58,8 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
 <br />
 
 ## **Installation**
+
+[**Full Getting Started Guide Here**](https://oliver-richman.github.io/termivore-site/getting-started/)
 
 You can import the features of Termivore as and when you need them, but if you're creating a new CLI, not just integrating some of our features into an existing CLI, it's recommended you use the Termivore CLI (see below).
 
