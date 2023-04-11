@@ -44,7 +44,7 @@ Termivore is a Node.js package for creating beautiful and responsive command lin
 
 -   🚀 [**CLI Command Creation**](https://oliver-richman.github.io/termivore-site/features/cli-commands/): users can easily create and customize their own CLI commands with arguments/options and actions.
 -   🎡 [**Spinner**](https://oliver-richman.github.io/termivore-site/features/spinner/): display an animated spinner to indicate loading
--   📝 [**Logger**](#https://oliver-richman.github.io/termivore-site/features/logger/): log messages to the console with customizable colors and styles
+-   📝 [**Logger**](https://oliver-richman.github.io/termivore-site/features/logger/): log messages to the console with customizable colors and styles
 -   🕹️ [**Prompt**](https://oliver-richman.github.io/termivore-site/features/prompt/): prompt the user for input with customizable options and validation
 -   🔗 [**Open Link**](https://oliver-richman.github.io/termivore-site/features/open-link/): Open's the url passed to it in the user's default browser.
 -   📊 **Progress Bar** (SOON): display a progress bar with percentage and ETA
