@@ -9,7 +9,6 @@ import { setupLinting } from './create-linting';
 import { createMiscFiles } from './create-misc';
 import { installDependencies } from './create-dependencies';
 import { doesDirectoryExist, isValidDirectoryName, isValidRootCommand, removeDirectory } from '../../utils';
-import path from 'path';
 
 export const createNewCliProject = async ({ args, opts }: IActionData, termivoreVersion: string) => {
 	log('').print();
@@ -32,28 +31,7 @@ export const createNewCliProject = async ({ args, opts }: IActionData, termivore
 	const lintingPreference = await getLintingPreference(projectName, opts.lintingPreference as string);
 	const wantsToInitGit = opts.noGit === undefined ? await doesWantToInitGit(projectName) : !opts.noGit;
 
-	log(`Great! Before we go ahead, these are the options you've selected for ${projectName}:`).hex('#3cf49f').print();
-	log('').print();
-	log(' - Project Name:').append(log(projectName).green()).print();
-	log(' - Root Command:').append(log(rootCommand).green()).print();
-	log(' - Language:').append(log(language).green()).print();
-	log(` - Create '${rootCommand} help' command:`)
-		.append(log(wantsHelpCommand ? 'Yes' : 'No').green())
-		.print();
-	log(` - Create '${rootCommand} -v' option:`)
-		.append(log(wantsVersionCommand ? 'Yes' : 'No').green())
-		.print();
-	log(` - Linting prefence:`).append(log(lintingPreference).green()).print();
-	log(' - Initialize as Git repository:')
-		.append(log(wantsToInitGit ? 'Yes' : 'No').green())
-		.print();
-	log('').print();
-
-	const happyToContinue = await prompt(
-		`Are you happy to create ${projectName} with these settings?`,
-		['Yes', 'No'],
-		false,
-	);
+	const happyToContinue = await isHappyToContinue(projectName, rootCommand, language, wantsHelpCommand, wantsVersionCommand, lintingPreference, wantsToInitGit);
 
 	if (happyToContinue !== 'Yes') {
 		log('').print();
@@ -241,3 +219,30 @@ const spinUpCli = async (
 		log(`Don't forget to customise ${lintingFormattingText} to your preference`).hex('#3cf49f').print();
 	}
 };
+
+const isHappyToContinue = async (projectName: any, rootCommand: any, language: string, wantsHelpCommand: boolean, wantsVersionCommand: boolean, lintingPreference: string, wantsToInitGit: boolean) => {
+	log(`Great! Before we go ahead, these are the options you've selected for ${projectName}:`).hex('#3cf49f').print();
+	log('').print();
+	log(' - Project Name:').append(log(projectName).green()).print();
+	log(' - Root Command:').append(log(rootCommand).green()).print();
+	log(' - Language:').append(log(language).green()).print();
+	log(` - Create '${rootCommand} help' command:`)
+		.append(log(wantsHelpCommand ? 'Yes' : 'No').green())
+		.print();
+	log(` - Create '${rootCommand} -v' option:`)
+		.append(log(wantsVersionCommand ? 'Yes' : 'No').green())
+		.print();
+	log(` - Linting prefence:`).append(log(lintingPreference).green()).print();
+	log(' - Initialize as Git repository:')
+		.append(log(wantsToInitGit ? 'Yes' : 'No').green())
+		.print();
+	log('').print();
+
+	const happyToContinue = await prompt(
+		`Are you happy to create ${projectName} with these settings?`,
+		['Yes', 'No'],
+		false
+	);
+	return happyToContinue;
+}
+
