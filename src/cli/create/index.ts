@@ -9,7 +9,6 @@ import { setupLinting } from './create-linting';
 import { createMiscFiles } from './create-misc';
 import { installDependencies } from './create-dependencies';
 import { doesDirectoryExist, isValidDirectoryName, isValidRootCommand, removeDirectory } from '../../utils';
-import path from 'path';
 
 export const createNewCliProject = async ({ args, opts }: IActionData, termivoreVersion: string) => {
 	log('').print();

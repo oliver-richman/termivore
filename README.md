@@ -1,4 +1,8 @@
-# 🥩 Termivore</h1>
+<p align="center">
+  <img src="assets/termivore-logo.svg" alt="Termivore logo">
+</p>
+
+# 🥩 Termivore
 
 Feed your hunger for beautiful CLI interfaces with Termivore
 
