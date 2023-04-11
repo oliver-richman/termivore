@@ -17,7 +17,7 @@
 ---
 
 <div align="center">
-    <a style="font-size: 28px; font-weight: bold;" href="https://oliver-richman.github.io/termivore-site/">~ Full Termivore Documentation ~</a>
+    <h1><a style="font-weight: bold;" href="https://oliver-richman.github.io/termivore-site/">~ Full Termivore Documentation ~</a></h1>
 </div>
 
 ___
