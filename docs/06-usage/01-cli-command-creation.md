@@ -9,7 +9,7 @@ const myCli = new CLI('myCli')
 myCli.addCommand('my-command')
 	.description('Description of what this command does')
 	.argument('my-argument', 'Purpose of argument')
-	.option('my-option', ['-m'], 'Purpose of option')
+	.option('my-option', 'boolean', ['-m'], 'Purpose of option')
 	.action((actionData) => {
 		// Logic for command goes here
 	});
