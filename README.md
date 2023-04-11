@@ -1,6 +1,6 @@
 <p align="center">
   <img width="80px" src="assets/termivore-logo.svg" alt="Termivore logo">
-  <h2 style="font-weight: bold" align="center">Termivore</h2>
+  <h1 style="font-weight: bold" align="center">Termivore</h1>
   <p align="center">Feed your hunger for beautiful CLI interfaces with Termivore</p>
 </p>
 
@@ -17,7 +17,7 @@
 ---
 
 <div align="center">
-  <h2><a style="font-weight: bold;" href="https://oliver-richman.github.io/termivore-site/">Full Termivore Documentation</a></h2>
+    <a style="font-size: 28px; font-weight: bold;" href="https://oliver-richman.github.io/termivore-site/">~ Full Termivore Documentation ~</a>
 </div>
 
 ___
