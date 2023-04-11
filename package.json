@@ -13,8 +13,7 @@
 		"lint:yaml": "yamllint .github/workflows/*.yml",
 		"lint": "eslint src/**/*.ts",
 		"lint:fix": "eslint src/**/*.ts --fix",
-		"prepublishOnly": "npm run build && npm run docs",
-		"docs": "node scripts/compileDocumentation.js",
+		"prepublishOnly": "npm run build",
 		"prepare": "husky install"
 	},
 	"readme": "README.md",
